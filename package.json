@@ -1,0 +1,27 @@
+{
+  "name": "napogenmo2023-poetry-generators",
+  "version": "1.0.0",
+  "description": "A collection of poetry generators created as part of National Poetry Generation Month 2023",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bohara2000/NaPoGenMo2023-Poetry-Generators.git"
+  },
+  "keywords": [
+    "poetry",
+    "generation"
+  ],
+  "author": "Bryant O'Hara",
+  "license": "GNU General Public License v3.0",
+  "bugs": {
+    "url": "https://github.com/bohara2000/NaPoGenMo2023-Poetry-Generators/issues"
+  },
+  "homepage": "https://github.com/bohara2000/NaPoGenMo2023-Poetry-Generators#readme",
+  "dependencies": {
+    "rita": "^2.8.31"
+  }
+}
