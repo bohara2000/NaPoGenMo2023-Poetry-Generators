@@ -84,10 +84,13 @@
             btnWxQuery.onclick = function () {
                 // get the location from the input field
                 var location = document.getElementById("location").value.trim();
+                // add US to the location if it's not there
+                if (!location.endsWith(', US')) {
+                    location += ', US';
+                }
                 // fetch the weather data
-                //var key = '89262585db735dbd509b02c8bbd96b63';
-                var key = 'ae42c105aab1b2953802b368a9e54825';
-                fetch('https://api.openweathermap.org/data/2.5/weather?g=' + location + '&appid=' + key)
+                var key = 'YOUR_OPENWEATHERMAP_API_KEY';
+                fetch('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + key)
                     .then(function (resp) { return resp.json() }) // Convert data to json
                     .then(function (data) {
                         // if the key is invalid, show an error message in the card
@@ -95,6 +98,27 @@
                             document.getElementById("wx-conditions").innerHTML = `<div class="alert alert-warning" role="alert">Cannot access weather data at this time. Sorry.</div>`;
                             return;
                         }
+                        else if (data.cod == 404) {
+                            document.getElementById("wx-conditions").innerHTML = `<div class="alert alert-warning" role="alert">Cannot find weather data for that location. Sorry.</div>`;
+                            return;
+                        }
+                        // update the card title with the name and country  of the location
+                        document.getElementById("wx-location").innerHTML = location;
+
+                        // update the card subtitle with the high and low temperatures
+                        var temp = Math.round(data.main.temp - 273.15);
+                        var temp_min = Math.round(data.main.temp_min - 273.15);
+                        var temp_max = Math.round(data.main.temp_max - 273.15);
+                        document.getElementById("wx-temp").innerHTML = temp + '°C (' + temp_min + '°C - ' + temp_max + '°C)';
+
+                        
+                        // update the card body with the weather conditions
+                        var conditions = '';
+                        for (var i = 0; i < data.weather.length; i++) {
+                            conditions += `<div class="alert alert-primary" role="alert">${data.weather[i].description}</div>`;
+                        }
+                        document.getElementById("wx-conditions").innerHTML = conditions;
+
                         console.log(data);
                     })
                     .catch(function (e) {
