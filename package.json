@@ -2,6 +2,7 @@
   "name": "napogenmo2023-poetry-generators",
   "version": "1.0.0",
   "description": "A collection of poetry generators created as part of National Poetry Generation Month 2023",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node .",
@@ -22,6 +23,11 @@
   },
   "homepage": "https://github.com/bohara2000/NaPoGenMo2023-Poetry-Generators#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "openai": "^3.2.1",
     "rita": "^2.8.31"
   }
 }
